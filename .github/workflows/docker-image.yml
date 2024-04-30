@@ -18,6 +18,9 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
+
+    - name: List file in current directory
+      run: ls
       
     - name: Build and Push Docker Image
       run:  docker build -t pank05081985/scalable-payment:v1 .
