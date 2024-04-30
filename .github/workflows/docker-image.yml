@@ -9,17 +9,20 @@ on:
 jobs:
 
   build:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./payment
 
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
 
-    - name: List file in current directory
-      run: ls
+        - name: List file in current directory
+          run: ls
       
-    - name: Build and Push Docker Image
-      run:  docker build -t pank05081985/scalable-payment:v1 .
+        - name: Build and Push Docker Image
+          run:  docker build -t pank05081985/scalable-payment:v1 .
 
-    - name: Publish the image to Docker hub
-      run: docker push pank05081985/scalable-payment:latest
+        - name: Publish the image to Docker hub
+          run: docker push pank05081985/scalable-payment:latest
