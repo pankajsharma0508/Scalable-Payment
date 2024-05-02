@@ -7,7 +7,7 @@ spec:
     app: payment-service
   ports:
     - port: 5000
-      targetPort: 80
+      targetPort: 8080
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -25,7 +25,7 @@ spec:
      spec:
        containers:
          - name: payment-service
-           image: scalable_payment:latest
+           image: pank05081985/scalable-payment
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -39,5 +39,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: payment-service
+
   
     
