@@ -25,3 +25,6 @@ kubectl delete -n default deployment payment-service
 
 # add a node port service for testing purpose on local.
 kubectl port-forward service/payment-service 5000:5000
+
+
+
