@@ -16,7 +16,6 @@ jobs:
 
         - name: List file in current directory
           run: |
-            cd payment
             ls
         - name: Build and Push Docker Image
           run:  docker build -t pank05081985/scalable-payment:v1 .
