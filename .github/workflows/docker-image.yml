@@ -12,7 +12,7 @@ jobs:
       runs-on: ubuntu-latest
       defaults:
         run: 
-          working-directory: ./Scalable-Payment/Scalable-Payment/Payment
+          working-directory: Payment
           
       steps:
         - name: Checkout Repository
