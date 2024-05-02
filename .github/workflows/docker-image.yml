@@ -15,9 +15,9 @@ jobs:
           uses: actions/checkout@v4
 
         - name: List file in current directory
-          run: ls
-          working-directory: ./payment
-      
+          run: |
+            cd payement
+            ls
         - name: Build and Push Docker Image
           run:  docker build -t pank05081985/scalable-payment:v1 .
 
