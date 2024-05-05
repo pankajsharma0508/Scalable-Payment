@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+using Payment.Kafka;
 using System.Reflection;
 
 namespace Payment
@@ -18,6 +20,7 @@ namespace Payment
             // Adding CQRS using MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+            builder.Services.AddHostedService<Consumer>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

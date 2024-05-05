@@ -21,7 +21,7 @@ namespace Payment.Controllers
         // GET: api/<PaymentsController>
         [HttpGet]
         public async Task<List<Data.Models.Payment>> Get() => await mediator.Send(new GetPaymentsQuery());
-       
+
         // GET api/<PaymentsController>/5
         [HttpGet("{id}")]
         public async Task<Data.Models.Payment> Get(string id) => await mediator.Send(new GetPaymentQuery { Id = id });
