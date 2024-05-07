@@ -11,6 +11,17 @@ namespace Payment
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // Add services to the container.
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()//WithOrigins("http://localhost:4200")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -29,7 +40,7 @@ namespace Payment
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAnyOrigin");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
