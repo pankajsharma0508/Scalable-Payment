@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Payment.Data.Commands;
 using Payment.Data.Query;
+using Payment.Kafka;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,7 +30,14 @@ namespace Payment.Controllers
 
         // POST api/<PaymentsController>
         [HttpPost]
-        public async Task<Data.Models.Payment> Post([FromBody] Data.Models.Payment payment) => await mediator.Send(new CreatePaymentCommand { Payment = payment });
+        public  Data.Models.Payment Post([FromBody] Data.Models.Payment payment)
+        {
+            var result =  mediator.Send(new CreatePaymentCommand { Payment = payment }).Result;
+            Producer.ProduceMessage(payment.CartId);
+
+            return result;
+
+        }
 
         // PUT api/<PaymentsController>/5
         [HttpPut("{id}")]

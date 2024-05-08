@@ -15,11 +15,11 @@ namespace Payment.Kafka
             .Build();
         }
 
-        public static void ProduceMessage()
+        public static void ProduceMessage(string cartId)
         {
             using (var producer = new ProducerBuilder<string, string>(configuration.AsEnumerable()).Build())
             {
-                producer.Produce(topic, new Message<string, string> { Key = "key", Value = "value" },
+                producer.Produce(topic, new Message<string, string> { Key = "cartId", Value = cartId },
                   (deliveryReport) =>
                   {
                       if (deliveryReport.Error.Code != ErrorCode.NoError)
